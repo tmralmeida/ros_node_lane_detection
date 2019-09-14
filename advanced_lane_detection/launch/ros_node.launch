@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="advanced_lane_detection" type="lane_detection_node.py" name="lane_detection_node" output="screen">
+        
+    </node>
+</launch>
