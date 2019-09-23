@@ -66,9 +66,7 @@ class image_converter:
         xm_per_pix = 3.7/724 # meters per pixel in x dimension, lane width is 12 ft = 3.7 meters
         
         # Histogram of the bottom half of the image
-        histogram=np.sum(img[img.shape[0]//2:,:],axis=0)
-        # Output image to fraw and visualize the result
-        out_img=np.dstack((img,img,img))*255
+        histogram=np.sum(img[img.shape[0]//2:,:],axis=0) #img.shape[0]//2:=height/2 
         # Find the peak of the left and the right halfves of the histogram
         # These will be the starting point for the left and right lines
         midpoint=np.int(histogram.shape[0]/2)
@@ -132,10 +130,9 @@ class image_converter:
         # Fit a second order polynomial to each
         left_fit_m = np.polyfit(lefty*ym_per_pix, leftx*xm_per_pix, 2)
         right_fit_m = np.polyfit(righty*ym_per_pix, rightx*xm_per_pix, 2)
-        out_img[nonzeroy[left_lane_inds], nonzerox[left_lane_inds]] = [255, 0, 0]
-        out_img[nonzeroy[right_lane_inds], nonzerox[right_lane_inds]] = [0, 0, 255]
+               
         self.create_final_image(image_inicial,img,left_fit,right_fit)
-        return left_fit, right_fit, left_fit_m, right_fit_m, out_img
+        return left_fit, right_fit, left_fit_m, right_fit_m
 
     def create_final_image(self,img, binary_warped, leftLine, rightLine):
         left_fit = leftLine
