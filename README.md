@@ -1,5 +1,5 @@
 # ros_node_lane_detection
-Based in a similar ROS node. However this is a python version.
+Based on a similar ROS node. However this is a python version.
 
 To launch the node:
 ```
